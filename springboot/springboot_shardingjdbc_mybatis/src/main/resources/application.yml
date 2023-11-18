@@ -1,0 +1,40 @@
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+#sharding-jdbc配置
+spring:
+  shardingsphere:
+    datasource:
+      names: ds0,ds1 # 兹定于虚拟库名
+      # master数据源配置
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://114.132.210.77:3306/ds_0?characterEncoding=utf-8&serverTimezone=UTC
+        username: root #你的账号
+        password: cpc!23# #你的密码
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://114.132.210.77:3306/ds_1?characterEncoding=utf-8&serverTimezone=UTC
+        username: root #你的账号
+        password: cpc!23# #你的密码
+
+    # 单库分表 这里只定义一个库ds1
+    sharding:
+      tables:
+        t_order: #自定义虚拟表名 但是在mapper.xml中 操作表的时候 要用这个虚拟表名
+          actual-data-nodes: ds$->{0..1}.order$->{0..1}
+          databaseStrategy: #分库策略
+            inline:
+              shardingColumn: sharding_db_id #分库用的列名(真实列名）
+              algorithmExpression: ds${sharding_db_id % 2} #分库算法，根据上面的列里面的数据计算分到哪个库
+          table-strategy: #分表策略
+            inline:
+              sharding-column: sharding_table_id #分表用的列名(真实列名）
+              algorithm-expression: order$->{sharding_table_id % 2} #分表算法，根据上面的列里面的数据计算分到哪个表
+          keyGenerator:
+            type: SNOWFLAKE #雪花算法
+            column: key_id #用雪花算法生成全局(所有库所有order表)唯一
+props:
+  sql.show: true

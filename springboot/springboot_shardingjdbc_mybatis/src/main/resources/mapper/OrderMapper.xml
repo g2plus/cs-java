@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.arhi.mapper.OrderMapper">
+   <!-- 通用查询映射结果 -->
+   <resultMap id="BaseResultMap" type="top.arhi.domain.OrderDomain">
+      <id column="id" property="id" />
+      <result column="order_id" property="orderId" />
+   </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    id,
+    order_id
+    </sql>
+
+    <!--基础CRUD、分页、列表部分 begin-->
+    <insert id="save" parameterType="top.arhi.domain.OrderDomain"
+            keyProperty="id" useGeneratedKeys="true">
+        insert into t_order
+        (
+            id,
+            sharding_db_id,
+            sharding_table_id
+        )
+        values
+        (
+            #{id},
+            #{shardingDbId},
+            #{shardingTableId}
+        )
+    </insert>
+
+</mapper>

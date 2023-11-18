@@ -1,0 +1,84 @@
+server:
+  port: 8081
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # 设置单个文件的大小为10M
+      max-request-size: 50MB # 设置总上传的数据大小为50M
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  redis:
+    port: 6379
+    host: 114.132.210.77
+    password: cpc!23
+    database: 3
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://114.132.210.77:3306/test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: cpc!23#
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: ruoyi
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  main:
+    allow-bean-definition-overriding: true
+
+leetcode:
+  sms:
+    url: http://106.ihuyi.com/webservice/sms.php?method=Submit
+    account: C80305290
+    password: e6e474c1e7b4f88889f3fd67b474bd68
+upload:
+  dir: D:\\download
+
+tess4j:
+  datapath: D:\develop\Tesseract-OCR\tessdata
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  #自定义类型处理器包路径
+  type-handlers-package: top.arhi.mp.handler
+
+ip2region:
+  external: false
+  index-block-size: 4096
+  total-header-size: 8192
+  location: classpath*:ip2region/ip2region.xdb
+
