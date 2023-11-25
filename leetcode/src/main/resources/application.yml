@@ -82,3 +82,7 @@ ip2region:
   total-header-size: 8192
   location: classpath*:ip2region/ip2region.xdb
 
+amap:
+  key: 659f057c4e1b3c72ae58027363b3afb9
+
+

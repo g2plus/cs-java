@@ -7,6 +7,7 @@ import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
+import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import top.arhi.model.pojo.User;
 import top.arhi.model.vo.AjaxResult;
 import top.arhi.service.IpService;
 import top.arhi.util.ExcelUtil;
+import top.arhi.util.HttpContextUtil;
 import top.arhi.util.WebUtil;
 import top.arhi.util.ZipUtil;
 
@@ -58,6 +60,13 @@ public class TestController {
     @PostMapping("/post")
     @ResponseBody
     public ResponseEntity post(@RequestBody Map map) {
+        System.out.println("----------------------------------------");
+        String header = HttpContextUtil.getHttpServletRequest().getHeader("User-Agent");
+        //获取ua信息
+        UserAgent userAgent = UserAgent.parseUserAgentString(header);
+        System.out.println(header);
+        System.out.println(userAgent.getBrowser().getName());
+        System.out.println(userAgent.getOperatingSystem().getName());
         return ResponseEntity.ok(map);
     }
 
@@ -66,6 +75,18 @@ public class TestController {
     @ResponseBody
     public ResponseEntity filewithArgs(@RequestParam("file") List<MultipartFile> files, User user) {
         System.out.println(files);
+        System.out.println(user);
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", "200");
+        map.put("data", Collections.EMPTY_LIST);
+        map.put("msg", "success");
+        return ResponseEntity.ok(map);
+    }
+
+    @PostMapping("/filewithArgs/v1")
+    @ResponseBody
+    public ResponseEntity filewithArgsV2(@RequestParam("file") MultipartFile file, User user) {
+        System.out.println(file.getOriginalFilename());
         System.out.println(user);
         Map<String, Object> map = new HashMap<>();
         map.put("code", "200");
@@ -88,6 +109,13 @@ public class TestController {
     }
 
 
+    /**
+     * jsonp 处理跨域处理
+     *
+     * @param callback
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(value = "/load/data")
     public void loadData2(@RequestParam("callback") String callback, HttpServletResponse response) throws IOException {
         Map<String, String> data = new HashMap<>();
@@ -259,11 +287,6 @@ public class TestController {
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=configDetail.zip");
         ZipUtil.downloadZipForByteMore(response.getOutputStream(), fileBufMap);
     }
-
-
-    /**
-     * 文件上传方法
-     */
 
 
 }
