@@ -1,4 +1,4 @@
-package top.arhi.model.vo;
+package top.arhi.vo;
 
 import org.springframework.util.StringUtils;
 
@@ -181,6 +181,7 @@ public class AjaxResult extends HashMap<String, Object> {
     public static AjaxResult error(String msg) {
         return AjaxResult.error(msg, null);
     }
+
 
     /**
      * 返回错误消息

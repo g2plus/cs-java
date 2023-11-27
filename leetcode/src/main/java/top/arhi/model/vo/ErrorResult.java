@@ -6,15 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-//https://www.jianshu.com/p/d08e255312f9
 public class ErrorResult {
-
     private String code;
     private String message;
-
 
     public static ErrorResult error() {
         return ErrorResult.builder().code("999999").message("系统异常稍后再试").build();

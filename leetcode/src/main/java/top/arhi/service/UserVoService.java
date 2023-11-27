@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.stereotype.Service;
 
 import top.arhi.mapper.UserVoMapper;
-import top.arhi.model.vo.Result;
+import top.arhi.model.vo.AjaxResult;
 import top.arhi.model.vo.UserVo;
 
 import javax.annotation.Resource;
@@ -18,37 +18,37 @@ public class UserVoService {
     @Resource
     private UserVoMapper userVoMapper;
 
-    public Result get(Integer id) {
+    public AjaxResult get(Integer id) {
         LambdaQueryWrapper<UserVo> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserVo::getId, id);
         UserVo user = userVoMapper.selectOne(wrapper);
-        return Result.success(user);
+        return AjaxResult.success(user);
     }
 
-    public Result insert(UserVo user) {
+    public AjaxResult insert(UserVo user) {
         int line = userVoMapper.insert(user);
         if (line > 0) {
-            return Result.success(line);
+            return AjaxResult.success();
         }
-        return Result.fail(888, "操作数据库失败");
+        return AjaxResult.error(888, "操作数据库失败", null);
     }
 
-    public Result delete(Integer id) {
+    public AjaxResult delete(Integer id) {
         LambdaQueryWrapper<UserVo> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserVo::getId, id);
         int line = userVoMapper.delete(wrapper);
         if (line > 0) {
-            return Result.success(line);
+            return AjaxResult.success();
         }
-        return Result.fail(888, "操作数据库失败");
+        return AjaxResult.error(888, "操作数据库失败", null);
     }
 
-    public Result update(UserVo user) {
+    public AjaxResult update(UserVo user) {
         int i = userVoMapper.updateById(user);
         if (i > 0) {
-            return Result.success(i);
+            return AjaxResult.success();
         }
-        return Result.fail(888, "操作数据库失败");
+        return AjaxResult.error(888, "操作数据库失败", null);
     }
 
 }

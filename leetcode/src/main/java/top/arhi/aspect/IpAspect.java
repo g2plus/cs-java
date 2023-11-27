@@ -22,7 +22,7 @@ public class IpAspect {
     @Autowired
     IP2regionTemplate template;
 
-    @Pointcut("@annotation(top.arhi.aspect.Ip)")
+    @Pointcut("@annotation(top.arhi.annotation.Ip)")
     public void pointcut() {
     }
 
