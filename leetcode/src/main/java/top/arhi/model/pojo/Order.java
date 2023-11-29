@@ -1,7 +1,5 @@
 package top.arhi.model.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-
 public class Order {
     private static final long serialVersionUID = 1L;
     private Long Id;

@@ -13,7 +13,6 @@ import top.arhi.util.BindingResultUtil;
 import top.arhi.util.JacksonUtil;
 import top.arhi.validator.AgeConstraintValidator;
 
-
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import java.util.Map;

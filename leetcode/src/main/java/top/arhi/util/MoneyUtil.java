@@ -2,8 +2,6 @@ package top.arhi.util;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 public class MoneyUtil {
 
     // 大写数字

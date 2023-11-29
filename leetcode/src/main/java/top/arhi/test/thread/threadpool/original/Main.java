@@ -2,7 +2,7 @@ package top.arhi.test.thread.threadpool.original;
 
 import java.util.concurrent.ExecutorService;
 
-import static java.util.concurrent.Executors.*;
+import static java.util.concurrent.Executors.newFixedThreadPool;
 
 /**
  * @author e2607

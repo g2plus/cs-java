@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Target(ElementType.METHOD)
-public @interface ClearAndReloadCache {
+public @interface ClearCache {
     String name() default "";
 }

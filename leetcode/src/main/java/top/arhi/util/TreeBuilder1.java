@@ -39,9 +39,10 @@ public class TreeBuilder1 {
     }
 
     private static String getParentId(String typeId) {
-        // 根据type_id规则计算父节点的id
+        //根据type_id规则计算父节点的id
         if (typeId.length() <= 4) {
-            return null; // 根节点没有父节点
+            // 根节点没有父节点
+            return null;
         }
         return typeId.substring(0, typeId.length() - 4);
     }

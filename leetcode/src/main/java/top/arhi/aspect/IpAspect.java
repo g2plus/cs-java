@@ -2,7 +2,6 @@ package top.arhi.aspect;
 
 import com.github.hiwepy.ip2region.spring.boot.IP2regionTemplate;
 import com.github.hiwepy.ip2region.spring.boot.ext.RegionAddress;
-import com.github.hiwepy.ip2region.spring.boot.ext.RegionEnum;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

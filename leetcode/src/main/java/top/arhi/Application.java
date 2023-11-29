@@ -21,6 +21,17 @@ public class Application {
     @Autowired
     IP2regionTemplate template;
 
+    //文件大小配置 采用 配置文件进行配置
+//    @Bean(name = "multipartResolver")
+//    public CommonsMultipartResolver multipartResolver() {
+//        CommonsMultipartResolver multipartResolver = new
+//                CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(1000000000);
+//        return multipartResolver;
+//    }
+
+
+
     @PostConstruct
     public void test() throws IOException {
 

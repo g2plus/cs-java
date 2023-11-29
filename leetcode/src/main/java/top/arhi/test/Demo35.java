@@ -2,8 +2,8 @@ package top.arhi.test;
 
 import com.alibaba.fastjson.JSONArray;
 import top.arhi.model.pojo.Body;
-import top.arhi.util.GsonUtil;
 import top.arhi.util.FastJsonUtil;
+import top.arhi.util.GsonUtil;
 
 import java.util.List;
 import java.util.function.Consumer;

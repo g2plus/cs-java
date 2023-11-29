@@ -80,9 +80,22 @@ public class TestController {
 
     @PostMapping("/filewithArgs/v1")
     @ResponseBody
-    public ResponseEntity filewithArgsV2(@RequestParam("file") MultipartFile file, User user) {
+    public ResponseEntity filewithArgsV1(@RequestParam("file") MultipartFile file, User user) {
         System.out.println(file.getOriginalFilename());
         System.out.println(user);
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", "200");
+        map.put("data", Collections.EMPTY_LIST);
+        map.put("msg", "success");
+        return ResponseEntity.ok(map);
+    }
+
+    @PostMapping("/filewithArgs/v11")
+    @ResponseBody
+    //https://blog.csdn.net/weixin_44745147/article/details/120087484
+    public ResponseEntity filewithArgsV11(@RequestParam("file") MultipartFile file, String id) {
+        System.out.println(file.getOriginalFilename());
+        System.out.println(id);
         Map<String, Object> map = new HashMap<>();
         map.put("code", "200");
         map.put("data", Collections.EMPTY_LIST);

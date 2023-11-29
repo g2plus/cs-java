@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import top.arhi.constant.Constant;
+import top.arhi.constant.Constants;
 import top.arhi.exception.BusinessException;
 import top.arhi.model.vo.ErrorResult;
 import top.arhi.template.SmsTemplate;
@@ -41,7 +41,7 @@ public class SmsService {
         Random random = new Random();
         String[] str={"0","1","2","3","4","5","6","7","8","9"};
         StringBuilder strBuilder=new StringBuilder();
-        for(int i = 0; i< Constant.CODE_LEN; i++){
+        for(int i = 0; i< Constants.CODE_LEN; i++){
             strBuilder.append(str[random.nextInt(str.length)]);
         }
         String code = strBuilder.toString();

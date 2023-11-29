@@ -1,8 +1,8 @@
 package top.arhi.service;
 
 import com.github.hiwepy.ip2region.spring.boot.IP2regionTemplate;
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import top.arhi.util.AddressUtil;
 
 @Service

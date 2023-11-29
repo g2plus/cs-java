@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import top.arhi.annotation.Cache;
 import top.arhi.model.vo.AjaxResult;
+import top.arhi.util.JacksonUtil;
 import top.arhi.util.RedisUtil;
+import top.arhi.util.SpringElUtil;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 public class CacheAspect {
 
     @Autowired
-    private RedisUtil redisUtil; // json数据
+    private RedisUtil redisUtil;
 
     /**
      * aop切点
@@ -46,51 +48,38 @@ public class CacheAspect {
      */
     @Around("cache()")
     public Object toCache(ProceedingJoinPoint pjp) {
-
         try {
-            // 思路： 设置存储的格式，获取即可
-
             Signature signature = pjp.getSignature();
-            // 类名
             String className = pjp.getTarget().getClass().getSimpleName();
-            // 方法名
             String methodName = signature.getName();
-
-            // 参数处理
             Object[] args = pjp.getArgs();
             Class[] parameterTypes = new Class[args.length];
             String params = "";
             for (int i = 0; i < args.length; i++) {
                 if (args[i] != null) {
                     parameterTypes[i] = args[i].getClass();
-                    params += JSON.toJSONString(args[i]);
+                    params += JacksonUtil.parseObjToJson(args[i]);
                 }
             }
             if (StringUtils.isNotEmpty(params)) {
-                //加密 以防出现key过长以及字符转义获取不到的情况
                 params = DigestUtils.md5Hex(params);
             }
-
-            // 获取controller中对应的方法
             Method method = signature.getDeclaringType().getMethod(methodName, parameterTypes);
-
             // 获取Cache注解
-            Cache annotation = method.getAnnotation(Cache.class);
-            long expire = annotation.expire();
-            String name = annotation.name();
-
-            // 访问redis（先尝试获取，没有则访问数据库）
-            String redisKey = name + "::" + className + "::" + methodName + "::" + params;
-            String redisValue = redisUtil.get(redisKey);
+            Cache cache = method.getAnnotation(Cache.class);
+            long expire = cache.expire();
+            String name = cache.name();
+            // 支持spring El表达式
+            name = SpringElUtil.parse(name, method, args);
+            String redisValue = redisUtil.get(name);
             if (StringUtils.isNotEmpty(redisValue)) {
-                // 不为空返回数据
                 AjaxResult result = JSON.parseObject(redisValue, AjaxResult.class);
-                log.info("数据从redis缓存中获取,key: {}", redisKey);
+                log.info("数据从redis缓存中获取,key: {}", name);
                 return result; // 跳出方法
             }
             Object proceed = pjp.proceed();
-            redisUtil.set(redisKey, JSON.toJSONString(proceed), expire, TimeUnit.MILLISECONDS);
-            log.info("数据存入redis缓存,key: {}", redisKey);
+            redisUtil.set(name, JacksonUtil.parseObjToJson(proceed), expire, TimeUnit.MILLISECONDS);
+            log.info("数据存入redis缓存,key: {}", name);
             return proceed;
         } catch (Throwable throwable) {
             throwable.printStackTrace();

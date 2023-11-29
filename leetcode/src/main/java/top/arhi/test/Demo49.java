@@ -1,10 +1,10 @@
 package top.arhi.test;
 
-import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.Condition;
 
 /**
  * ntpdate-4.2.6p5-29.el7.centos.2.x86_64.rpm

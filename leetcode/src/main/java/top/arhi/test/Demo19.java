@@ -2,7 +2,6 @@ package top.arhi.test;
 
 import top.arhi.util.MacAddrUtil;
 
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
