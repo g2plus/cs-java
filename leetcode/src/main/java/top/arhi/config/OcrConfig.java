@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class TesseractOcrConfiguration {
+public class OcrConfig {
 
 	@Value("${tess4j.datapath}")
 	private String dataPath;

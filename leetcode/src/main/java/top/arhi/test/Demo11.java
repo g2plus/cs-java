@@ -2,6 +2,7 @@ package top.arhi.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.arhi.mapper.OrderMapper;
@@ -10,7 +11,6 @@ import top.arhi.model.pojo.Order;
 import top.arhi.model.pojo.User;
 import top.arhi.service.UserService;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +21,14 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class Demo11 {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
 
-    @Resource
+    @Autowired
     private UserService userService;
 
 
-    @Resource
+    @Autowired
     private OrderMapper orderMapper;
 
     @Test

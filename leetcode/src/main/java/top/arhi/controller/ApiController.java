@@ -2,6 +2,7 @@ package top.arhi.controller;
 
 import lombok.AllArgsConstructor;
 import net.sourceforge.tess4j.TesseractException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import top.arhi.service.ColorService;
 import top.arhi.service.OcrService;
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/api")
 @AllArgsConstructor
 public class ApiController {
-    @Resource
+    @Autowired
     private ColorService colorService;
 
     private final OcrService ocrService;

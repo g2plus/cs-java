@@ -1,12 +1,11 @@
 package top.arhi.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.arhi.mapper.UserVoMapper;
 import top.arhi.model.vo.AjaxResult;
 import top.arhi.model.vo.UserVo;
-
-import javax.annotation.Resource;
 
 /**
  * service层
@@ -14,7 +13,7 @@ import javax.annotation.Resource;
 @Service
 public class UserVoService {
 
-    @Resource
+    @Autowired
     private UserVoMapper userVoMapper;
 
     public AjaxResult get(Integer id) {
