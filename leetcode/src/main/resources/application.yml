@@ -101,4 +101,10 @@ ip2region:
 amap:
   key: 659f057c4e1b3c72ae58027363b3afb9
 
+arcsoft:
+  appid: 5zYjieSm24RrPaCc68XkLTHeZXU52jzfLxGwHUkmWpVm
+  sdkKey: SDK_KEY:51TE9rpcrpQxhkVB2w31jLapQFmYmYUtZJtkAFHeZ717
+  libPath: D:\\develop\\code\\cs-java\\leetcode\\WIN64
+
+
 
