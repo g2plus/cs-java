@@ -151,6 +151,7 @@ public class RestfulController {
         map.add("gender", user.getGender());
 
         File tempFile = null;
+        //MOBILE_ICO
 
         try {
             String originalFilename = file.getOriginalFilename();

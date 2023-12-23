@@ -1,11 +1,29 @@
 package top.arhi.util;
 
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.net.NetUtil;
+import cn.hutool.core.util.RandomUtil;
+
+import static cn.hutool.core.util.IdUtil.getSnowflake;
+
 /**
  * ID生成器工具类
  *
  * @author ruoyi
  */
 public class IdUtil {
+
+
+    public static Long WORKER_ID = NetUtil.ipv4ToLong(NetUtil.getLocalhostStr()) % 32L;
+
+    public static Long DATA_CENTER_ID = RandomUtil.randomLong(32L);
+
+    public static Snowflake SNOW_FLAKE;
+
+
+    public IdUtil() {
+    }
+
     /**
      * 获取随机UUID
      *
@@ -41,4 +59,19 @@ public class IdUtil {
     public static String fastSimpleUUID() {
         return UUID.fastUUID().toString(true);
     }
+
+
+    public static Long getId() {
+        return SNOW_FLAKE.nextId();
+    }
+
+    public static String getStrId() {
+        return SNOW_FLAKE.nextIdStr();
+    }
+
+    static {
+        SNOW_FLAKE = getSnowflake(WORKER_ID, DATA_CENTER_ID);
+    }
+
+
 }

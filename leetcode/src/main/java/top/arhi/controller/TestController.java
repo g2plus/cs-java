@@ -20,16 +20,15 @@ import top.arhi.annotation.Ip;
 import top.arhi.model.dto.AccountDTO;
 import top.arhi.model.dto.UserDTO;
 import top.arhi.model.pojo.User;
+import top.arhi.model.vo.AjaxResult;
 import top.arhi.service.IpService;
-import top.arhi.util.ExcelUtil;
-import top.arhi.util.HttpContextUtil;
-import top.arhi.util.WebUtil;
-import top.arhi.util.ZipUtil;
+import top.arhi.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 @Controller
@@ -136,6 +135,22 @@ public class TestController {
         //用回调函数名称包裹返回数据
         String result = callback + "(" + jsonData + ")";
         response.getWriter().write(result);
+    }
+
+    @RequestMapping("/md5")
+    @ResponseBody
+    public AjaxResult md5(MultipartFile file) throws IOException {
+        if (file == null) {
+            return AjaxResult.error("文件为空");
+        } else {
+            InputStream inputStream = file.getInputStream();
+            String md5 = MD5Utils.getStreamMD5String(inputStream);
+            AjaxResult result = new AjaxResult();
+            Map map = new HashMap();
+            map.put("file_name", file.getOriginalFilename());
+            map.put("md5", md5);
+            return result.success(map);
+        }
     }
 
     @Autowired
