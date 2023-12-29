@@ -12,8 +12,6 @@ import static top.arhi.util.ServletUtil.getResponse;
 
 @Slf4j
 public class Convert2Json {
-
-
     public void convert2json(Object obj) {
         String json = JSONObject.toJSONString(obj);
         HttpServletResponse response = getResponse();

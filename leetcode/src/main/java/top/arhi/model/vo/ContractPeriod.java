@@ -3,18 +3,20 @@ package top.arhi.model.vo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Accessors(chain = true)
 public class ContractPeriod implements Serializable {
-    private int number;
+    private Integer number;
     private Date periodStart;
     private Date periodEnd;
-    private int year;
+    private Integer year;
+    private BigDecimal monthRent;
+    private String normalFlag;
+    private String yearMonth;
 }

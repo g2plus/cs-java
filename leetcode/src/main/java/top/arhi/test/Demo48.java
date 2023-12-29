@@ -47,13 +47,14 @@ public class Demo48 {
         }
 
         public synchronized void SubThread(int i) {
-            if (!bShouldSub)
+            if (!bShouldSub) {
                 try {
                     this.wait();
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+            }
 
             for (int j = 0; j < 10; j++) {
                 System.out.println(Thread.currentThread().getName() + ":i=" + i + ",j=" + j);
