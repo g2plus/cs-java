@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @Slf4j
-public class RabbitMQDelayTaskListener {
+public class RabbitmqDelayTaskListener {
 
     @RabbitListener(queues = "sanyouDelayTaskQueue")
     public void onMessage(String msg) {

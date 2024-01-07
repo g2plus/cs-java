@@ -2,6 +2,7 @@ package top.arhi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 微信公众号：三友的java日记
@@ -10,10 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2023/2/26 18:00
  */
 @SpringBootApplication
-public class DelayTaskApplication {
+@EnableScheduling
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(DelayTaskApplication.class);
+        SpringApplication.run(Application.class);
     }
 
 }

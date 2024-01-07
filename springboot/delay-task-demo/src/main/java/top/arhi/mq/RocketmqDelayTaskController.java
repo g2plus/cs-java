@@ -1,20 +1,14 @@
 package top.arhi.mq;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.client.exception.MQBrokerException;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
-import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
-import org.apache.rocketmq.remoting.exception.RemotingException;
-import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.io.UnsupportedEncodingException;
 
 /**
  * 微信公众号：三友的java日记
@@ -24,7 +18,7 @@ import java.io.UnsupportedEncodingException;
  */
 @RestController
 @Slf4j
-public class RocketMQDelayTaskController {
+public class RocketmqDelayTaskController {
 
     @Resource
     private DefaultMQProducer producer;

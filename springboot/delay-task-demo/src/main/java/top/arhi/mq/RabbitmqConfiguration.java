@@ -1,16 +1,8 @@
 package top.arhi.mq;
 
-import org.apache.rocketmq.acl.common.AclClientRPCHook;
-import org.apache.rocketmq.acl.common.SessionCredentials;
-import org.apache.rocketmq.client.producer.DefaultMQProducer;
-import org.apache.rocketmq.spring.autoconfigure.RocketMQProperties;
 import org.springframework.amqp.core.*;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 /**
  * 微信公众号：三友的java日记
@@ -19,7 +11,7 @@ import org.springframework.util.StringUtils;
  * @date 2023/2/26 22:25
  */
 @Configuration
-public class RabbitMQConfiguration {
+public class RabbitmqConfiguration {
 
     @Bean
     public DirectExchange sanyouDirectExchangee() {

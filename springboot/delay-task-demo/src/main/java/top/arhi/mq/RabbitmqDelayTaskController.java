@@ -18,7 +18,7 @@ import java.util.UUID;
  */
 @RestController
 @Slf4j
-public class RabbitMQDelayTaskController {
+public class RabbitmqDelayTaskController {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
