@@ -1,14 +1,11 @@
-package top.arhi.test;
+package top.arhi.reactor;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import org.junit.Test;
 import org.reactivestreams.Subscription;
 import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.SignalType;
-
-import java.util.function.Consumer;
 
 public class Demo2 {
     @Test
